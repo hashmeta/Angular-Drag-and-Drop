@@ -1,0 +1,18 @@
+<div class="container" cdkDropListGroup>
+  <div class="example-container" *ngFor="let status of statuses">
+    <h2>{{ status }}</h2>
+    <div
+      class="example-list"
+      cdkDropList
+      id="{{ status }}"
+      [cdkDropListData]=status
+      (cdkDropListDropped)="drop($event)"
+    >
+      <ng-container *ngFor="let item of fleet | matchesCategory: status">
+        <div class="example-box" id="{{item.id}}" cdkDrag>
+          {{ item | json }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
